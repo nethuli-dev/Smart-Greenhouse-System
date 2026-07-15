@@ -40,6 +40,9 @@ Smart-Greenhouse-System/
 ├── docs/
 │ ├── circuit_diagram.png
 │ └── system_architecture.png
+├── images/
+│ ├── dashboard_screenshot.png
+│ └── hardware_setup.jpg
 └── README.md
 
 ## 🔧 Setup Instructions

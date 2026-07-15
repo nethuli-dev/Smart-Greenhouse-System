@@ -1,4 +1,4 @@
-# Arduino
+# Arduino specific
 *.ino.preprocessed
 *.ino.cpp
 *.ino.hex
@@ -14,12 +14,9 @@
 *.out
 *.app
 
-# Compiled files
-*.elf
-*.hex
-*.map
-*.lst
-*.sym
+# ESP8266
+*.sdk
+*.no-arduino
 
 # IDE files
 .vscode/
@@ -33,21 +30,24 @@ build/
 tmp/
 temp/
 
-# Personal settings
-*.user
-*.prefs
-*.bak
-
-# OS generated files
+# OS files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# ESP8266
-esp8266_webserver/data/*.gz
-*.sdk
-*.no-arduino
+# Secrets
+secrets.h
+*_secrets.h
+*_private.h
+credentials.h
+
+# Compiled firmware
+*.elf
+*.hex
+*.map
+*.lst
+*.sym
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
