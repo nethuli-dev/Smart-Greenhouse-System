@@ -1,0 +1,53 @@
+# Arduino
+*.ino.preprocessed
+*.ino.cpp
+*.ino.hex
+*.elf
+*.lst
+*.o
+*.d
+*.a
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+*.app
+
+# Compiled files
+*.elf
+*.hex
+*.map
+*.lst
+*.sym
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build directories
+build/
+tmp/
+temp/
+
+# Personal settings
+*.user
+*.prefs
+*.bak
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ESP8266
+esp8266_webserver/data/*.gz
+*.sdk
+*.no-arduino
