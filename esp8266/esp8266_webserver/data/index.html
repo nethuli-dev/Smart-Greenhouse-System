@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 Smart Greenhouse Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌱 Smart Greenhouse Monitoring & Control</h1>
+            <p class="subtitle">Real-time Environmental Management System</p>
+            <div class="status-badge">
+                <span class="dot"></span>
+                <span id="connectionStatus">Connected</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Sensor Readings Card -->
+            <div class="card sensor-card">
+                <div class="card-header">
+                    <h2>📊 Live Sensor Data</h2>
+                    <span class="update-time">Updated: <span id="updateTime">--</span></span>
+                </div>
+                <div class="sensor-grid">
+                    <div class="sensor-item temperature">
+                        <div class="sensor-icon">🌡️</div>
+                        <div class="sensor-info">
+                            <span class="sensor-label">Temperature</span>
+                            <span class="sensor-value" id="temperature">--</span>
+                            <span class="sensor-unit">°C</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="tempProgress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sensor-item humidity">
+                        <div class="sensor-icon">💧</div>
+                        <div class="sensor-info">
+                            <span class="sensor-label">Humidity</span>
+                            <span class="sensor-value" id="humidity">--</span>
+                            <span class="sensor-unit">%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="humidityProgress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sensor-item soil-moisture">
+                        <div class="sensor-icon">🌍</div>
+                        <div class="sensor-info">
+                            <span class="sensor-label">Soil Moisture</span>
+                            <span class="sensor-value" id="soilMoisture">--</span>
+                            <span class="sensor-unit">%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="soilProgress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Device Controls Card -->
+            <div class="card controls-card">
+                <div class="card-header">
+                    <h2>🎮 Manual Controls</h2>
+                    <span class="mode-indicator">Manual Mode</span>
+                </div>
+                <div class="controls-grid">
+                    <!-- Pump Control -->
+                    <div class="control-group">
+                        <h3>💧 Water Pump</h3>
+                        <div class="control-status">
+                            <span class="status-label">Status:</span>
+                            <span class="status-value" id="pumpStatus">OFF</span>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="controlDevice('PUMP_ON')">
+                                <span class="btn-icon">▶</span> Turn ON
+                            </button>
+                            <button class="btn btn-danger" onclick="controlDevice('PUMP_OFF')">
+                                <span class="btn-icon">⏹</span> Turn OFF
+                            </button>
+                        </div>
+                        <div class="control-indicator">
+                            <div class="indicator-led" id="pumpLED"></div>
+                            <span id="pumpStateText">Idle</span>
+                        </div>
+                    </div>
+
+                    <!-- Fan Control -->
+                    <div class="control-group">
+                        <h3>🌀 Cooling Fan</h3>
+                        <div class="control-status">
+                            <span class="status-label">Status:</span>
+                            <span class="status-value" id="fanStatus">OFF</span>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="controlDevice('FAN_ON')">
+                                <span class="btn-icon">▶</span> Turn ON
+                            </button>
+                            <button class="btn btn-danger" onclick="controlDevice('FAN_OFF')">
+                                <span class="btn-icon">⏹</span> Turn OFF
+                            </button>
+                        </div>
+                        <div class="control-indicator">
+                            <div class="indicator-led" id="fanLED"></div>
+                            <span id="fanStateText">Idle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Status Card -->
+            <div class="card system-card">
+                <div class="card-header">
+                    <h2>🔄 System Status</h2>
+                </div>
+                <div class="system-info">
+                    <div class="info-row">
+                        <span class="info-label">System Uptime:</span>
+                        <span class="info-value" id="uptime">--</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Last Reading:</span>
+                        <span class="info-value" id="lastReading">--</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Data Points:</span>
+                        <span class="info-value" id="dataPoints">0</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Auto Mode:</span>
+                        <span class="info-value" id="autoMode">Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Threshold Settings Card -->
+            <div class="card settings-card">
+                <div class="card-header">
+                    <h2>⚙️ Threshold Settings</h2>
+                </div>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="tempHigh">🌡️ Temp High:</label>
+                        <input type="number" id="tempHigh" value="30" step="0.5">
+                        <span>°C</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="tempLow">🌡️ Temp Low:</label>
+                        <input type="number" id="tempLow" value="27" step="0.5">
+                        <span>°C</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="soilDry">🌍 Soil Dry:</label>
+                        <input type="number" id="soilDry" value="40">
+                        <span>%</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="soilWet">🌍 Soil Wet:</label>
+                        <input type="number" id="soilWet" value="60">
+                        <span>%</span>
+                    </div>
+                </div>
+                <button class="btn btn-success" onclick="updateSettings()">
+                    💾 Save Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>🌱 Smart Greenhouse System | Made with ❤️ by FC08 Group</p>
+            <p class="version">Version 1.0.0</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

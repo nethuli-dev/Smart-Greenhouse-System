@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "author": "FC08 Group",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {
+        "serialMonitor": "true"
+      }
+    },
+    {
+      "type": "wokwi-esp8266",
+      "id": "esp",
+      "top": -100,
+      "left": 400,
+      "attrs": {
+        "ssid": "Greenhouse_AP",
+        "password": "greenhouse123"
+      }
+    },
+    {
+      "type": "wokwi-dht11",
+      "id": "dht1",
+      "top": 120,
+      "left": 0,
+      "attrs": {
+        "temperature": "25",
+        "humidity": "60"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 120,
+      "left": -80,
+      "attrs": {
+        "value": "0.5"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 240,
+      "left": -80,
+      "attrs": {
+        "color": "green"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 240,
+      "left": 80,
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 320,
+      "left": 0,
+      "attrs": {
+        "label": "Reset"
+      }
+    }
+  ],
+  "connections": [
+    ["uno:5V", "dht1:VCC", "red"],
+    ["uno:GND", "dht1:GND", "black"],
+    ["uno:A0", "pot1:OUT", "blue"],
+    ["uno:2", "dht1:DATA", "yellow"],
+    ["uno:7", "led1:A", "green"],
+    ["uno:8", "led2:A", "blue"],
+    ["uno:10", "esp:RX", "blue"],
+    ["uno:11", "esp:TX", "green"],
+    ["uno:GND", "esp:GND", "black"],
+    ["uno:5V", "esp:VIN", "red"],
+    ["uno:GND", "btn1:GND", "black"],
+    ["uno:3", "btn1:OUT", "yellow"]
+  ],
+  "simulation": {
+    "startTime": 0,
+    "speed": 1,
+    "autoStart": true
+  },
+  "serialMonitor": {
+    "display": "auto",
+    "newline": "\\n",
+    "baudRate": 9600
+  }
+}
